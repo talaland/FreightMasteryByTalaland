@@ -1,0 +1,2197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Freight VA Mastermind — Free Course</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0A0F1E;
+  --navy2:#111827;
+  --steel:#1A2744;
+  --steel2:#1e3a5f;
+  --amber:#F4A100;
+  --amber2:#fbbf24;
+  --offwhite:#E8F0FE;
+  --muted:#94A3B8;
+  --border:#1e2d45;
+  --green:#22C55E;
+  --red:#ef4444;
+  --purple:#a855f7;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--navy);color:var(--offwhite);min-height:100vh;overflow-x:hidden}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--navy)}
+::-webkit-scrollbar-thumb{background:var(--steel2);border-radius:3px}
+
+/* ── NAV ── */
+#top-nav{
+  position:sticky;top:0;z-index:500;
+  background:rgba(10,15,30,0.95);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  height:60px;display:flex;align-items:center;
+  padding:0 24px;gap:20px;
+}
+.nav-brand{display:flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none}
+.nav-logo{width:36px;height:36px;background:var(--amber);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.nav-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#fff;letter-spacing:.3px;line-height:1}
+.nav-sub{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:14px}
+.progress-track{width:130px;height:5px;background:var(--steel);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--green));border-radius:3px;transition:width .5s ease;width:0%}
+.progress-label{font-size:12px;color:var(--muted);white-space:nowrap}
+#sidebar-toggle{background:var(--steel);border:1px solid var(--border);color:var(--offwhite);padding:6px 14px;border-radius:6px;cursor:pointer;font-size:13px;font-family:'Inter',sans-serif;display:none}
+
+/* ── VIEWS ── */
+.view{display:none}
+.view.active{display:block}
+
+/* ══════════════════════════════════════
+   HOME PAGE
+══════════════════════════════════════ */
+
+/* HERO */
+.hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg,#050810 0%,#0d1929 40%,#0a1520 100%);
+  padding:80px 24px 100px;text-align:center;
+}
+.hero-road{
+  position:absolute;bottom:0;left:0;right:0;height:60px;
+  background:linear-gradient(180deg,transparent,rgba(244,161,0,0.04));
+  overflow:hidden;
+}
+.road-stripes{
+  position:absolute;bottom:16px;left:0;right:0;
+  height:6px;display:flex;gap:0;
+  animation:roadmove 1.5s linear infinite;
+}
+@keyframes roadmove{from{transform:translateX(0)}to{transform:translateX(-80px)}}
+.stripe{width:60px;height:6px;background:var(--amber);opacity:.35;flex-shrink:0;margin-right:20px;border-radius:2px}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(244,161,0,0.1);border:1px solid rgba(244,161,0,0.3);
+  border-radius:100px;padding:6px 18px;margin-bottom:32px;
+}
+.badge-dot{width:7px;height:7px;background:var(--amber);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.badge-text{font-size:12px;color:var(--amber);font-weight:700;letter-spacing:.5px}
+
+.hero h1{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(42px,8vw,88px);
+  font-weight:900;line-height:.95;
+  letter-spacing:-1px;color:#fff;
+  margin-bottom:12px;
+  text-shadow:0 0 60px rgba(244,161,0,0.15);
+}
+.hero h1 span{color:var(--amber)}
+.hero-sub{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(18px,3vw,28px);
+  font-weight:600;color:var(--muted);
+  letter-spacing:.5px;margin-bottom:20px;
+  text-transform:uppercase;
+}
+.hero-desc{
+  font-size:clamp(14px,2vw,17px);color:#7a90b0;
+  line-height:1.75;max-width:580px;margin:0 auto 44px;
+}
+
+.hero-stats{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:44px;
+}
+.stat-pill{
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:100px;padding:8px 18px;
+  font-size:13px;color:#94a3b8;
+  display:flex;align-items:center;gap:7px;
+}
+.stat-pill strong{color:#fff;font-weight:700}
+
+.cta-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--amber);color:#000;
+  border:none;padding:18px 40px;
+  border-radius:12px;font-size:17px;font-weight:800;
+  cursor:pointer;font-family:'Inter',sans-serif;
+  box-shadow:0 8px 32px rgba(244,161,0,.35);
+  transition:all .2s ease;letter-spacing:-.2px;
+  text-transform:uppercase;letter-spacing:.5px;
+}
+.cta-btn:hover{background:var(--amber2);transform:translateY(-2px);box-shadow:0 12px 40px rgba(244,161,0,.45)}
+.cta-arrow{font-size:20px;transition:transform .2s}
+.cta-btn:hover .cta-arrow{transform:translateX(4px)}
+
+/* PROGRESS BANNER */
+#progress-banner{
+  background:linear-gradient(90deg,rgba(34,197,94,0.08),rgba(34,197,94,0.03));
+  border-bottom:1px solid rgba(34,197,94,0.15);
+  padding:14px 24px;display:none;
+}
+.pb-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.pb-label{font-size:13px;font-weight:700;color:var(--green);white-space:nowrap}
+.pb-track{flex:1;min-width:120px;height:6px;background:var(--steel);border-radius:3px;overflow:hidden}
+.pb-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--amber));border-radius:3px;transition:width .5s}
+.pb-count{font-size:12px;color:var(--muted);white-space:nowrap}
+.continue-btn{
+  background:rgba(34,197,94,0.15);border:1px solid rgba(34,197,94,0.3);
+  color:var(--green);padding:6px 16px;border-radius:6px;
+  cursor:pointer;font-size:13px;font-weight:700;font-family:'Inter',sans-serif;
+  white-space:nowrap;transition:all .15s;
+}
+.continue-btn:hover{background:rgba(34,197,94,0.25)}
+
+/* COURSE GRID */
+.course-section{max-width:960px;margin:0 auto;padding:56px 24px 80px}
+.section-eyebrow{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:13px;font-weight:700;color:var(--amber);
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;
+}
+.section-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(28px,4vw,40px);font-weight:900;
+  color:#fff;letter-spacing:-.5px;margin-bottom:8px;
+}
+.section-desc{font-size:15px;color:var(--muted);margin-bottom:36px;line-height:1.6}
+
+/* MODULE CARD */
+.module-card{
+  background:var(--steel);
+  border:1px solid var(--border);
+  border-radius:16px;margin-bottom:20px;
+  overflow:hidden;
+  transition:border-color .2s,box-shadow .2s;
+}
+.module-card:hover{border-color:var(--amber);box-shadow:0 0 0 1px rgba(244,161,0,.1),0 8px 32px rgba(0,0,0,.3)}
+
+.module-header{
+  padding:22px 24px 18px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:flex-start;gap:16px;
+  cursor:pointer;user-select:none;
+}
+.module-icon{
+  width:48px;height:48px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+}
+.module-meta{flex:1}
+.module-level-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.level-badge{
+  font-size:10px;font-weight:800;letter-spacing:1px;
+  text-transform:uppercase;padding:3px 10px;border-radius:100px;
+}
+.level-beginner{background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.2)}
+.level-intermediate{background:rgba(244,161,0,.12);color:var(--amber);border:1px solid rgba(244,161,0,.2)}
+.level-advanced{background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.2)}
+.module-num{font-size:11px;color:#4a6080;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.module-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:22px;font-weight:800;color:#fff;
+  letter-spacing:-.2px;line-height:1.1;margin-bottom:5px;
+}
+.module-obj{font-size:13px;color:#6b87a8;line-height:1.55}
+
+.module-right{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0}
+.module-progress-ring{position:relative;width:48px;height:48px}
+.ring-svg{transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:var(--border);stroke-width:3}
+.ring-fill{fill:none;stroke-width:3;stroke-linecap:round;transition:stroke-dashoffset .5s ease}
+.ring-text{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+.ring-num{font-size:11px;font-weight:800;color:#fff;line-height:1}
+.ring-den{font-size:8px;color:var(--muted);line-height:1}
+.expand-icon{font-size:14px;color:var(--muted);transition:transform .25s;margin-top:auto}
+
+.module-lessons{border-top:0;overflow:hidden;max-height:0;transition:max-height .35s ease}
+.module-lessons.open{max-height:2000px}
+
+.lesson-row{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 24px;
+  border-top:1px solid rgba(255,255,255,0.04);
+  cursor:pointer;
+  transition:background .15s;
+  text-decoration:none;
+}
+.lesson-row:hover{background:rgba(255,255,255,0.03)}
+.lesson-row.completed{background:rgba(34,197,94,0.04)}
+
+.lesson-marker{
+  width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:13px;font-weight:700;
+  border:2px solid var(--border);color:var(--muted);
+  transition:all .2s;
+  font-family:'Barlow Condensed',sans-serif;
+}
+.lesson-row.completed .lesson-marker{
+  background:var(--green);border-color:var(--green);color:#000;font-size:14px;
+}
+.lesson-row:hover:not(.completed) .lesson-marker{border-color:var(--amber);color:var(--amber)}
+
+.lesson-info{flex:1}
+.lesson-title{font-size:14px;font-weight:600;color:#c8d8f0;line-height:1.3;transition:color .15s}
+.lesson-row:hover .lesson-title{color:#fff}
+.lesson-row.completed .lesson-title{color:#86efac}
+.lesson-meta{display:flex;align-items:center;gap:10px;margin-top:4px;flex-wrap:wrap}
+.lesson-type{font-size:11px;color:#4a6080}
+.lesson-dur{font-size:11px;color:#4a6080}
+.lesson-sep{width:3px;height:3px;background:#2a3f5f;border-radius:50%}
+.lesson-arrow{font-size:16px;color:#2a4060;transition:color .15s,transform .15s}
+.lesson-row:hover .lesson-arrow{color:var(--amber);transform:translateX(3px)}
+
+/* ══════════════════════════════════════
+   LESSON VIEW
+══════════════════════════════════════ */
+#lesson-view{
+  display:none;
+  min-height:calc(100vh - 60px);
+}
+#lesson-view.active{display:flex}
+
+/* LESSON SIDEBAR */
+#lesson-sidebar{
+  width:300px;flex-shrink:0;
+  background:var(--navy2);
+  border-right:1px solid var(--border);
+  height:calc(100vh - 60px);
+  overflow-y:auto;
+  position:sticky;top:60px;
+}
+.sidebar-header{
+  padding:20px 20px 14px;
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;background:var(--navy2);z-index:10;
+}
+.sidebar-label{font-size:10px;font-weight:700;color:var(--amber);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
+.sidebar-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;color:#fff;line-height:1.2}
+.sidebar-progress{
+  display:flex;align-items:center;gap:8px;margin-top:10px;
+}
+.sp-track{flex:1;height:4px;background:var(--steel);border-radius:2px;overflow:hidden}
+.sp-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--green));border-radius:2px;transition:width .5s}
+.sp-txt{font-size:11px;color:var(--muted);white-space:nowrap}
+
+.sb-module-group{border-bottom:1px solid var(--border)}
+.sb-module-head{
+  padding:12px 20px 8px;
+  font-size:10px;font-weight:800;color:#3a5070;
+  text-transform:uppercase;letter-spacing:.8px;
+  display:flex;align-items:center;gap:8px;
+}
+.sb-lesson{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 20px 10px 24px;
+  cursor:pointer;transition:background .12s;
+  border-left:3px solid transparent;
+}
+.sb-lesson:hover{background:rgba(255,255,255,0.03)}
+.sb-lesson.active-lesson{background:rgba(244,161,0,0.07);border-left-color:var(--amber)}
+.sb-lesson.done-lesson{opacity:.7}
+.sb-dot{width:14px;height:14px;border-radius:50%;border:2px solid #2a3f5f;flex-shrink:0;transition:all .2s}
+.sb-lesson.active-lesson .sb-dot{background:var(--amber);border-color:var(--amber)}
+.sb-lesson.done-lesson .sb-dot{background:var(--green);border-color:var(--green)}
+.sb-lesson-title{font-size:12px;color:#7a9ab8;line-height:1.3;transition:color .12s}
+.sb-lesson.active-lesson .sb-lesson-title{color:#fff;font-weight:600}
+.sb-lesson:hover .sb-lesson-title{color:#c8d8f0}
+
+/* LESSON CONTENT AREA */
+#lesson-content{flex:1;overflow-y:auto;height:calc(100vh - 60px)}
+.lc-inner{max-width:760px;margin:0 auto;padding:40px 32px 80px}
+
+.lc-breadcrumb{
+  display:flex;align-items:center;gap:8px;margin-bottom:24px;flex-wrap:wrap;
+}
+.bc-back{
+  background:none;border:none;color:var(--muted);font-size:13px;
+  cursor:pointer;font-family:'Inter',sans-serif;
+  display:flex;align-items:center;gap:5px;padding:6px 0;
+  transition:color .15s;
+}
+.bc-back:hover{color:var(--amber)}
+.bc-sep{color:#2a3f5f}
+.bc-module{font-size:13px;color:#4a6080}
+.bc-lesson{font-size:13px;color:var(--muted)}
+
+.lc-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.lc-tag{
+  font-size:11px;font-weight:700;letter-spacing:.5px;
+  padding:4px 12px;border-radius:100px;
+  border:1px solid;
+}
+.tag-level-beginner{color:#4ade80;background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.2)}
+.tag-level-intermediate{color:var(--amber);background:rgba(244,161,0,.08);border-color:rgba(244,161,0,.2)}
+.tag-level-advanced{color:#f87171;background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.2)}
+.tag-type{color:var(--muted);background:rgba(255,255,255,.04);border-color:var(--border)}
+.tag-dur{color:var(--muted);background:rgba(255,255,255,.04);border-color:var(--border)}
+.tag-done{color:var(--green);background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.2)}
+
+.lc-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(26px,4vw,42px);font-weight:900;
+  color:#fff;letter-spacing:-.5px;line-height:1.05;
+  margin-bottom:28px;
+}
+
+/* CONTENT RENDERER */
+.lesson-body{line-height:1.75;color:#c8d8f0}
+.lesson-body h2{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:28px;font-weight:900;color:#fff;
+  letter-spacing:-.3px;margin:40px 0 12px;
+  padding-bottom:10px;border-bottom:1px solid var(--border);
+}
+.lesson-body h2:first-child{margin-top:0}
+.lesson-body h3{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:21px;font-weight:800;color:#e2ecff;
+  margin:28px 0 8px;letter-spacing:-.2px;
+}
+.lesson-body h4{
+  font-size:15px;font-weight:700;color:#94b8d8;
+  margin:20px 0 6px;text-transform:uppercase;letter-spacing:.5px;
+  font-size:12px;
+}
+.lesson-body p{margin:10px 0;color:#a8c0d8}
+.lesson-body strong{color:#fff;font-weight:700}
+.lesson-body em{color:var(--amber);font-style:normal;font-weight:600}
+.lesson-body hr{border:none;border-top:1px solid var(--border);margin:28px 0}
+.lesson-body ul,.lesson-body ol{padding-left:22px;margin:12px 0}
+.lesson-body li{margin-bottom:6px;color:#a8c0d8;line-height:1.65}
+.lesson-body li strong{color:#fff}
+.lesson-body blockquote{
+  border-left:3px solid var(--amber);
+  background:rgba(244,161,0,0.07);
+  padding:14px 18px;border-radius:0 8px 8px 0;
+  margin:20px 0;color:#d4aa50;font-style:italic;
+}
+.lesson-body pre{
+  background:#060b14;border:1px solid var(--border);
+  padding:20px;border-radius:10px;overflow-x:auto;
+  font-size:13px;line-height:1.7;color:#7dd3fc;
+  margin:20px 0;font-family:'Courier New',monospace;
+}
+.lesson-body code{
+  background:rgba(244,161,0,0.1);color:var(--amber);
+  padding:2px 7px;border-radius:4px;font-size:13px;
+  font-family:'Courier New',monospace;
+}
+.lesson-body pre code{background:none;color:#7dd3fc;padding:0}
+.lesson-body table{
+  width:100%;border-collapse:collapse;margin:20px 0;font-size:14px;
+  border-radius:10px;overflow:hidden;border:1px solid var(--border);
+}
+.lesson-body th{
+  background:rgba(244,161,0,0.1);color:var(--amber);
+  padding:10px 14px;text-align:left;font-weight:700;font-size:12px;
+  text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border);
+}
+.lesson-body td{
+  padding:10px 14px;color:#a8c0d8;border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.lesson-body tr:last-child td{border-bottom:none}
+.lesson-body tr:nth-child(even) td{background:rgba(255,255,255,0.02)}
+.lesson-body td strong{color:#e2ecff}
+
+/* LESSON ACTION BAR */
+.lc-action-bar{
+  display:flex;align-items:center;gap:12px;
+  margin-top:40px;padding-top:24px;
+  border-top:1px solid var(--border);flex-wrap:wrap;
+}
+.btn-prev,.btn-next,.btn-complete,.btn-finish{
+  display:flex;align-items:center;gap:8px;
+  padding:12px 22px;border-radius:10px;
+  font-size:14px;font-weight:700;cursor:pointer;
+  font-family:'Inter',sans-serif;border:none;
+  transition:all .15s;text-transform:uppercase;letter-spacing:.3px;
+}
+.btn-prev{background:var(--steel);color:var(--muted);border:1px solid var(--border)}
+.btn-prev:hover{background:rgba(255,255,255,0.07);color:#fff}
+.btn-complete{background:rgba(34,197,94,0.12);color:var(--green);border:1px solid rgba(34,197,94,0.25)}
+.btn-complete:hover{background:rgba(34,197,94,0.2)}
+.btn-next{background:var(--amber);color:#000}
+.btn-next:hover{background:var(--amber2);transform:translateY(-1px)}
+.btn-finish{background:linear-gradient(135deg,var(--green),#16a34a);color:#000}
+.btn-finish:hover{transform:translateY(-1px)}
+.spacer{flex:1}
+
+/* MOBILE SIDEBAR */
+#mobile-sb-overlay{
+  display:none;position:fixed;inset:0;z-index:300;
+}
+#mobile-sb-panel{
+  width:290px;background:var(--navy2);border-right:1px solid var(--border);
+  height:100%;overflow-y:auto;box-shadow:4px 0 32px rgba(0,0,0,.6);
+}
+#mobile-sb-backdrop{
+  position:absolute;inset:0;background:rgba(0,0,0,.6);
+}
+
+/* COMPLETION SCREEN */
+#completion-view{display:none;min-height:calc(100vh - 60px);align-items:center;justify-content:center;text-align:center;padding:48px 24px;background:radial-gradient(ellipse at center,rgba(34,197,94,.08) 0%,transparent 70%)}
+#completion-view.active{display:flex;flex-direction:column}
+.complete-icon{font-size:72px;margin-bottom:24px;animation:pop .5s ease}
+@keyframes pop{0%{transform:scale(.5)}80%{transform:scale(1.1)}100%{transform:scale(1)}}
+.complete-h1{font-family:'Barlow Condensed',sans-serif;font-size:clamp(40px,6vw,72px);font-weight:900;color:#fff;margin-bottom:12px}
+.complete-h1 span{color:var(--green)}
+.complete-p{font-size:17px;color:var(--muted);max-width:480px;margin:0 auto 36px;line-height:1.7}
+.complete-stats{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.cs-item{text-align:center}
+.cs-num{font-family:'Barlow Condensed',sans-serif;font-size:48px;font-weight:900;color:var(--amber);line-height:1}
+.cs-label{font-size:13px;color:var(--muted);margin-top:4px}
+.restart-btn{background:var(--steel);border:1px solid var(--border);color:var(--muted);padding:12px 28px;border-radius:10px;cursor:pointer;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;transition:all .15s}
+.restart-btn:hover{color:#fff;border-color:var(--amber)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  #lesson-sidebar{display:none}
+  #sidebar-toggle{display:block}
+  .lc-inner{padding:24px 18px 60px}
+  #mobile-sb-overlay.open{display:block}
+  .hero{padding:56px 20px 80px}
+  .course-section{padding:40px 16px 60px}
+}
+@media(max-width:480px){
+  .module-header{padding:18px 16px 14px}
+  .lesson-row{padding:12px 16px}
+  .lc-inner{padding:20px 16px 60px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<nav id="top-nav">
+  <a class="nav-brand" onclick="showHome()">
+    <div class="nav-logo">🚛</div>
+    <div>
+      <div class="nav-title">Freight VA Mastermind</div>
+      <div class="nav-sub">Free Course</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <div class="progress-track"><div class="progress-fill" id="nav-progress"></div></div>
+    <span class="progress-label" id="nav-progress-label">0 / 18</span>
+    <button class="btn-prev" id="sidebar-toggle" onclick="toggleMobileSidebar()" style="display:none">☰ Lessons</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════ HOME VIEW ═══════════════════ -->
+<div id="home-view" class="view active">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-road">
+      <div class="road-stripes" id="road-stripes"></div>
+    </div>
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      <span class="badge-text">100% Free · No Sign-Up · Open Access</span>
+    </div>
+    <h1>FREIGHT VA<br><span>MASTERMIND</span></h1>
+    <div class="hero-sub">Learn How U.S. Freight Companies Operate</div>
+    <p class="hero-desc">From zero knowledge to job-ready. Master TMS software, load boards, check calls, carrier onboarding, LTL freight, dispatching, and everything the U.S. freight industry runs on.</p>
+    <div class="hero-stats">
+      <div class="stat-pill">📚 <strong>18</strong> Lessons</div>
+      <div class="stat-pill">📦 <strong>6</strong> Modules</div>
+      <div class="stat-pill">🎯 <strong>Beginner → Advanced</strong></div>
+      <div class="stat-pill">🚛 <strong>U.S. Freight Focused</strong></div>
+      <div class="stat-pill">💼 <strong>Career-Ready Skills</strong></div>
+      <div class="stat-pill">🔓 <strong>Always Free</strong></div>
+    </div>
+    <button class="cta-btn" onclick="startCourse()">
+      Start Learning Now <span class="cta-arrow">→</span>
+    </button>
+  </div>
+
+  <!-- PROGRESS BANNER -->
+  <div id="progress-banner">
+    <div class="pb-inner">
+      <span class="pb-label" id="pb-label">Keep going!</span>
+      <div class="pb-track"><div class="pb-fill" id="pb-fill"></div></div>
+      <span class="pb-count" id="pb-count">0 of 18</span>
+      <button class="continue-btn" onclick="continueLesson()">Continue →</button>
+    </div>
+  </div>
+
+  <!-- MODULES -->
+  <div class="course-section">
+    <div class="section-eyebrow">Course Content</div>
+    <h2 class="section-title">6 Modules. 18 Lessons. Zero Cost.</h2>
+    <p class="section-desc">Click any lesson title to open it instantly. No login required — just start learning.</p>
+    <div id="modules-container"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════ LESSON VIEW ═══════════════════ -->
+<div id="lesson-view">
+  <div id="lesson-sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-label">Course Navigation</div>
+      <div class="sidebar-title">Freight VA Mastermind</div>
+      <div class="sidebar-progress">
+        <div class="sp-track"><div class="sp-fill" id="sp-fill"></div></div>
+        <span class="sp-txt" id="sp-txt">0/18</span>
+      </div>
+    </div>
+    <div id="sidebar-lessons"></div>
+  </div>
+  <div id="lesson-content">
+    <div class="lc-inner">
+      <div class="lc-breadcrumb">
+        <button class="bc-back" onclick="showHome()">← Back to Course</button>
+        <span class="bc-sep">›</span>
+        <span class="bc-module" id="bc-module"></span>
+        <span class="bc-sep">›</span>
+        <span class="bc-lesson" id="bc-lesson-num"></span>
+      </div>
+      <div class="lc-tags" id="lc-tags"></div>
+      <h1 class="lc-title" id="lc-title"></h1>
+      <div class="lesson-body" id="lesson-body"></div>
+      <div class="lc-action-bar" id="lc-action-bar"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ COMPLETION VIEW ═══════════════════ -->
+<div id="completion-view">
+  <div class="complete-icon">🏆</div>
+  <h1 class="complete-h1">Course <span>Complete!</span></h1>
+  <p class="complete-p">You've finished Freight VA Mastermind. You now know how the U.S. freight industry operates — from loading docks to load boards, from rate cons to rate negotiations.</p>
+  <div class="complete-stats">
+    <div class="cs-item"><div class="cs-num">18</div><div class="cs-label">Lessons Finished</div></div>
+    <div class="cs-item"><div class="cs-num">6</div><div class="cs-label">Modules Mastered</div></div>
+    <div class="cs-item"><div class="cs-num">$1T</div><div class="cs-label">Industry You Now Understand</div></div>
+  </div>
+  <button class="restart-btn" onclick="showHome()">← Back to Course Home</button>
+</div>
+
+<!-- ═══════════════════ MOBILE SIDEBAR OVERLAY ═══════════════════ -->
+<div id="mobile-sb-overlay">
+  <div style="position:relative;display:flex;height:100%">
+    <div id="mobile-sb-panel">
+      <div class="sidebar-header" style="display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div class="sidebar-label">Course Navigation</div>
+          <div class="sidebar-title">Freight VA Mastermind</div>
+        </div>
+        <button onclick="toggleMobileSidebar()" style="background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;padding:4px">✕</button>
+      </div>
+      <div id="mobile-sidebar-lessons"></div>
+    </div>
+    <div id="mobile-sb-backdrop" onclick="toggleMobileSidebar()"></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// COURSE DATA
+// ══════════════════════════════════════════════
+const COURSE = {
+  modules: [
+    {
+      id:1, level:"BEGINNER", emoji:"🗺️",
+      accentColor:"#22C55E",
+      title:"Introduction to U.S. Freight",
+      objective:"Understand the full picture of the U.S. freight industry — who the players are, how money flows, and where a Freight VA fits in.",
+      lessons:[
+        {
+          id:"1-1", title:"What Is Freight? The Big Picture",
+          duration:"12 min", type:"📖 Reading + Video",
+          content:`## What Is Freight?
+
+Freight is the commercial transportation of goods — anything from raw materials to finished products — moved by truck, rail, air, or sea across the United States.
+
+### The U.S. Freight Industry by the Numbers
+- **$1 trillion+** industry annually
+- **3.5 million** truck drivers in the U.S.
+- **500,000+** trucking companies operating today
+- **70%** of all U.S. freight moves by truck
+
+### The 3 Main Modes of Freight
+1. **Truckload (TL)** – One shipper fills an entire 53-ft trailer
+2. **Less-Than-Truckload (LTL)** – Multiple shippers share space in one trailer
+3. **Intermodal** – Freight moves by a combination of truck + rail
+
+### Key Industry Terms — Memorize These
+
+| Term | Meaning |
+|------|---------|
+| **Load** | A shipment to be transported |
+| **Lane** | A route between two cities (e.g., Dallas → Chicago) |
+| **Rate** | The price paid to move a load |
+| **DAT / Truckstop** | Freight load boards where brokers post loads |
+| **FMCSA** | Federal Motor Carrier Safety Administration |
+| **DOT** | Department of Transportation |
+| **MC Number** | Motor Carrier number — the carrier's federal ID |
+
+> **Your First Mental Model:** Think of freight like food delivery apps. The **shipper** is the restaurant, the **carrier** (truck driver) is the delivery driver, and the **freight broker** is the app connecting them.`
+        },
+        {
+          id:"1-2", title:"The 4 Key Players in Every Freight Transaction",
+          duration:"15 min", type:"📖 Reading + Quiz",
+          content:`## The 4 Key Players
+
+Every load that moves on a U.S. highway involves these four players. As a Freight VA, you'll interact with all of them.
+
+---
+
+### 1. The SHIPPER
+The company that has goods to move.
+
+**Examples:** Walmart, Amazon, local manufacturers, farms
+
+**Their problem:** They need their product moved fast, reliably, and cheaply
+
+**What they pay for:** Freight rates (quoted in dollars per load or per mile)
+
+**Real Example:** A furniture factory in North Carolina needs 40,000 lbs of sofas delivered to a distribution center in Ohio by Tuesday.
+
+---
+
+### 2. The CARRIER
+The trucking company or owner-operator who physically moves the freight.
+
+**Types of Carriers:**
+- **Asset-based:** Owns their trucks (e.g., Werner, J.B. Hunt)
+- **Owner-Operator:** Self-employed driver with their own truck
+- **Fleet:** Small company with 2–50 trucks
+
+**What they want:** Consistent loads, good rates, quick payment, minimal deadhead miles (empty driving)
+
+---
+
+### 3. The FREIGHT BROKER
+The middleman connecting shippers to carriers.
+
+**How they make money:** The spread between what a shipper pays and what they pay the carrier.
+
+**Example:**
+- Shipper pays broker: **$2,500**
+- Broker pays carrier: **$2,100**
+- Broker profit (margin): **$400**
+
+This is the company you will most likely work for as a Freight VA.
+
+---
+
+### 4. The FREIGHT VA — That's You!
+A virtual assistant who supports brokers, carriers, or shippers remotely.
+
+**VA Tasks Include:**
+- Tracking loads and updating shippers
+- Calling carriers to check on deliveries
+- Data entry in TMS (Transportation Management System)
+- Invoicing and billing support
+- Carrier onboarding and compliance checks
+- Customer service via email/phone
+
+---
+
+### Knowledge Check
+Think about this: If a broker finds a load for $2,800 and pays the carrier $2,200, what is the broker's gross margin?
+
+> **Answer:** $600 — this is called the "spread" or "margin." Most brokers target 15–20% margins.`
+        },
+        {
+          id:"1-3", title:"How a Load Moves from A to B — Step by Step",
+          duration:"18 min", type:"📖 Reading + Diagram",
+          content:`## The Life of a Freight Load
+
+Here's exactly what happens from the moment a shipper needs to move goods to when the carrier gets paid.
+
+---
+
+### Step 1: Shipper Requests a Quote
+The shipper contacts their broker with these details:
+- **Origin city/zip** — Where to pick up
+- **Destination city/zip** — Where to deliver
+- **Weight** — Usually in lbs
+- **Commodity** — What's being shipped
+- **Equipment type** — Dry van, reefer, flatbed?
+- **Pickup date** — When it needs to leave
+- **Delivery date** — When it needs to arrive
+
+### Step 2: Broker Searches for a Carrier
+The broker posts the load on a **load board** (DAT, Truckstop.com) or calls carriers they know directly.
+
+**Load boards are like job boards for truckers.** Carriers search for loads going in their direction.
+
+### Step 3: Rate Negotiation
+Carrier calls the broker. They negotiate the rate.
+
+> **Broker:** "I have a dry van load, Dallas to Memphis, 38,000 lbs, pickup tomorrow, paying $1,850."
+> **Carrier:** "I need $2,000 — I'm 45 miles away from that shipper."
+> **Broker:** "Best I can do is $1,900."
+> **Carrier:** "Deal."
+
+### Step 4: Rate Confirmation Sent
+The broker sends a **Rate Con** (Rate Confirmation) — a document stating load details, addresses, agreed rate, and payment terms.
+
+**As a Freight VA, you may be responsible for creating and sending Rate Cons.**
+
+### Step 5: Driver Picks Up the Load
+The driver arrives at the **shipper's facility**, loads the truck, and receives a **Bill of Lading (BOL)** — the legal contract for the shipment.
+
+### Step 6: In-Transit Tracking
+While the driver is moving, the broker and shipper want updates. **As a VA, you'll call drivers and send check calls.** This is one of the most common VA tasks.
+
+### Step 7: Delivery
+Driver arrives at the **consignee** (receiver), unloads, and gets a signed POD (Proof of Delivery).
+
+### Step 8: Invoicing & Payment
+- Carrier sends invoice + BOL + POD to broker
+- Broker invoices the shipper
+- Shipper pays broker (usually Net 30–45 days)
+- Broker pays carrier (usually within 30 days)
+
+**VA Role Here:** Processing invoices, matching documents, following up on payments.`
+        },
+        {
+          id:"1-4", title:"Equipment Types Every Freight VA Must Know",
+          duration:"10 min", type:"📖 Reading + Visual Guide",
+          content:`## Freight Equipment Types
+
+You'll see these terms every day. Know them by heart.
+
+---
+
+### DRY VAN — Most Common (~60% of all loads)
+- Enclosed trailer, 53 feet long
+- General freight: food, electronics, clothing, palletized goods
+- Cannot carry temperature-sensitive cargo
+- **Typical rate:** $2.00–$3.50/mile depending on lane
+
+### REEFER — Refrigerated Trailer
+- Temperature-controlled, 34°F to 70°F range
+- Used for: produce, dairy, meat, pharmaceuticals, flowers
+- Carrier must manage fuel for reefer unit
+- **Typical rate:** $2.50–$4.50/mile (premium over dry van)
+
+### FLATBED
+- No walls or roof — open trailer
+- Used for: steel, lumber, machinery, construction materials, oversized cargo
+- Requires straps, tarps, chains for securing
+- **Typical rate:** $2.50–$4.00/mile
+
+### STEP DECK (Drop Deck)
+- Lower to the ground than a flatbed
+- Carries taller cargo that can't fit under overpasses
+- Used for: large machinery, vehicles, tall equipment
+
+### POWER ONLY
+- The broker hires just the truck (tractor) — the shipper provides the trailer
+- Common with drop-and-hook operations
+
+### HOTSHOT
+- Smaller truck (F-250 to F-450) pulling a smaller trailer
+- Faster, used for urgent, smaller loads
+- Popular for oilfield equipment, agricultural parts
+
+### Box Truck / Sprinter Van
+- Used for last-mile delivery or small loads
+- Common in e-commerce fulfillment
+
+---
+
+### VA Tip
+> When a shipper requests a load, always confirm the equipment type first. Sending a flatbed truck to pick up frozen food is a costly mistake!`
+        }
+      ]
+    },
+    {
+      id:2, level:"BEGINNER", emoji:"💻",
+      accentColor:"#3B82F6",
+      title:"Tools, Technology & Software",
+      objective:"Get hands-on with the actual software used by U.S. freight companies daily — TMS platforms, load boards, communication tools, and tracking systems.",
+      lessons:[
+        {
+          id:"2-1", title:"What is a TMS? (Transportation Management System)",
+          duration:"20 min", type:"📖 Reading + Software Walkthrough",
+          content:`## Transportation Management System (TMS)
+
+A TMS is the central operating software for a freight brokerage or carrier. Think of it like a CRM + operations dashboard combined.
+
+---
+
+### What a TMS Does
+- Stores all load information (origin, destination, commodity, rate)
+- Tracks the status of every load in real-time
+- Manages customer (shipper) profiles
+- Manages carrier profiles and compliance docs
+- Generates invoices and rate confirmations
+- Produces reports and analytics
+
+---
+
+### Most Common TMS Platforms
+
+#### McLeod Software — Most popular in large brokerages
+- Enterprise-level, full-featured
+- Used by Echo Global, Coyote, CH Robinson
+- As a VA, you'll mostly do data entry and load tracking here
+
+#### Turvo
+- Modern, cloud-based
+- Real-time collaboration between brokers, carriers, shippers
+- VA Tasks: updating load statuses, sending notifications
+
+#### AscendTMS — Best for beginners to learn (FREE version available!)
+- Go to: **ascendtms.com**
+- Create a free account and explore the interface
+- Practice creating loads, adding carriers, updating statuses
+
+#### Rose Rocket
+- Mid-market brokerages and small carriers
+- Clean, modern interface
+
+---
+
+### How to Learn TMS Without a Job
+1. Sign up for AscendTMS free at ascendtms.com
+2. Watch YouTube tutorials: search "AscendTMS tutorial for beginners"
+3. Practice creating 10 fake loads with fake shipper/carrier details
+4. Document your process — this becomes a portfolio piece
+
+---
+
+### VA Data Entry Checklist in a TMS
+Every time a new load is created, you'll enter:
+
+| Field | Example Value |
+|-------|--------------|
+| Shipper name & contact | Blue Ridge Mfg — Tom Riley (704) 555-0192 |
+| Origin address + pickup date | 1450 Industrial Blvd, Charlotte, NC — Mon July 14 |
+| Consignee name & contact | Midwest Auto Parts — Sandra Kim (312) 555-0847 |
+| Destination address + delivery | 3890 Logistics Pkwy, Chicago, IL — Wed July 16 7AM |
+| Commodity | Palletized auto parts — 20 pallets |
+| Weight & piece count | 38,500 lbs |
+| Equipment type | 53' Dry Van |
+| Agreed carrier rate | $2,150 |
+| Carrier MC# + driver name | MC#789234 — Carlos Rivera (214) 555-0311 |`
+        },
+        {
+          id:"2-2", title:"Load Boards: DAT, Truckstop, and How to Use Them",
+          duration:"22 min", type:"📖 Reading + Demo",
+          content:`## Load Boards — The Freight Marketplace
+
+Load boards are online marketplaces where brokers post loads and carriers search for them.
+
+---
+
+### The Big 3 Load Boards
+
+#### DAT (dat.com) — The Industry Leader
+- Largest load board in the U.S.
+- 183 million loads posted annually
+- Has rate analytics tool (DAT RateView)
+- **Cost:** $45–$200/month for carriers and brokers
+
+**What you'll do on DAT as a VA:**
+- Post loads (enter all load details so carriers can find them)
+- Search for trucks in a specific area
+- Check market rates for a lane
+- Monitor load board activity
+
+#### Truckstop.com
+- Second largest load board
+- Known for carrier-friendly features
+- Has credit scores for brokers (carriers can see if a broker pays on time!)
+- **Cost:** $39–$399/month
+
+#### 123Loadboard
+- Budget-friendly option
+- Popular with small carriers and owner-operators
+- **Cost:** $35–$50/month
+
+---
+
+### How to Post a Load — Step by Step
+
+When your broker asks you to post a load to DAT:
+
+1. Log into DAT account
+2. Click **"Post a Load"**
+3. Enter: Origin city/zip, Destination city/zip, Pickup date, Delivery date, Trailer type, Weight, Rate (optional), Load description, Contact info
+4. Click Post
+5. Carriers will call within minutes if it's a good load
+
+---
+
+### Understanding Rate Per Mile
+
+The most common way freight rates are expressed:
+
+**Formula:** Total Rate ÷ Total Miles = Rate Per Mile (RPM)
+
+**Example:**
+- Load rate: $2,100
+- Distance: 980 miles
+- **RPM: $2,100 ÷ 980 = $2.14/mile**
+
+Carriers compare RPM across available loads to choose the best paying one.
+
+---
+
+### How to Check Market Rates
+
+Before posting or quoting a load, brokers check what the current market rate is for that lane.
+
+1. Go to DAT RateView (included in paid DAT subscription)
+2. Enter origin city and destination city
+3. See average rate per mile for the last 7, 14, and 30 days
+
+> **VA Task:** Your broker says "Check what dry van rates are running from Atlanta to Miami." You go to RateView, pull the data, and report back.`
+        },
+        {
+          id:"2-3", title:"Communication Tools Used in Freight",
+          duration:"12 min", type:"📖 Reading",
+          content:`## Communication Tools in a Freight Brokerage
+
+Freight moves fast — loads need to be tracked, problems need to be solved, and everyone needs to be updated in real time.
+
+---
+
+### Email (Gmail / Outlook)
+The backbone of broker-shipper-carrier communication.
+
+**Common email tasks for VAs:**
+- Sending rate confirmations to carriers
+- Emailing PODs and invoices to billing
+- Following up on missing documents
+- Responding to shipper check-in requests
+
+**VA Pro Tip:** Create email templates for repetitive tasks — "Your load has been dispatched," "We need your POD to process payment," "Check call update."
+
+---
+
+### Phone / VoIP
+Most freight communication happens on the phone. Carriers prefer calls over emails.
+
+**Common calls you'll make as a VA:**
+- **Check calls:** Location and ETA updates
+- **Carrier coverage calls:** Finding available trucks for a load
+- **Delivery confirmation calls:** Confirming delivery and POD status
+
+**Tools Used:**
+
+| Tool | Best For | Cost |
+|------|----------|------|
+| RingCentral | Most popular VoIP in freight | $20–$35/mo |
+| Dialpad | AI-powered, transcribes calls | $15–$25/mo |
+| Google Voice | Free, good for beginners | Free |
+
+---
+
+### Tracking Apps
+
+When a load is in transit, brokers use apps to track drivers:
+
+- **MacroPoint** — Most common in brokerages. Sends a text to the driver asking permission to track their phone GPS
+- **FourKites** — Real-time AI-powered visibility platform
+- **Project44** — Enterprise-level tracking
+- **Trucker Tools** — Free for carriers, integrates with brokerages
+
+> **VA Task:** You'll send tracking requests through MacroPoint and monitor load positions on a visibility dashboard throughout your shift.`
+        }
+      ]
+    },
+    {
+      id:3, level:"INTERMEDIATE", emoji:"⚙️",
+      accentColor:"#F59E0B",
+      title:"Core VA Tasks & Daily Operations",
+      objective:"Master the specific tasks a Freight VA does every single day — check calls, load building, carrier packets, invoicing, and customer service.",
+      lessons:[
+        {
+          id:"3-1", title:"How to Do a Check Call (With Full Scripts)",
+          duration:"25 min", type:"📖 Reading + Role Play Scripts",
+          content:`## Check Calls — Your Most Common VA Task
+
+A check call is when you call a truck driver to get an update on where they are and when they'll deliver.
+
+---
+
+### When to Do Check Calls
+- **Morning of pickup:** Confirm driver knows pickup location and appointment time
+- **After pickup:** Confirm load is on the truck, get current location
+- **Midday in-transit:** Where are you now? When do you expect to deliver?
+- **4 hours before delivery:** Final ETA confirmation
+- **After delivery:** Confirm delivery completed, POD signed
+
+---
+
+### The Check Call Scripts
+
+**Script 1: Pickup Confirmation**
+> "Hi, this is [Your Name] calling from [Brokerage Name] regarding load number [XXXXX] picking up today in [City, State]. I just wanted to confirm you're on your way to the shipper. The pickup address is [Address], and your appointment is at [Time]. Do you have any questions about the load?"
+
+**Script 2: In-Transit Check Call**
+> "Hi, is this [Driver Name]? This is [Your Name] from [Brokerage]. I'm checking in on load number [XXXXX] going to [Destination]. Can you tell me your current location and your estimated delivery time? ... Great, thank you. I'll update the shipper. If anything changes, please give us a call at [Number]."
+
+**Script 3: Delivery Confirmation**
+> "Hi [Driver Name], this is [Your Name] from [Brokerage] on load [XXXXX]. I'm checking — did you complete delivery at [Consignee Name]? Great! Can you confirm the BOL was signed and you have your POD? Please email or send us a photo of the signed POD as soon as possible so we can process your payment."
+
+---
+
+### What to Do When There's a Problem
+
+**Scenario: Driver says he'll be 4 hours late**
+1. Don't panic — this is normal
+2. Get the new ETA from the driver
+3. Call or email the shipper IMMEDIATELY with the update
+4. Log the update in the TMS with a timestamp
+5. Offer to help reschedule if the delivery has an appointment
+
+**Scenario: Driver isn't answering**
+1. Try calling 3 times over 30 minutes
+2. Try texting
+3. Check the tracking app (MacroPoint/Trucker Tools)
+4. Escalate to your broker supervisor
+5. The broker may need to call the carrier's dispatch line
+
+---
+
+### Logging Check Call Notes in TMS
+
+Every check call gets logged. Example format:
+
+> **10:42 AM** — Called driver John Smith (555-123-4567). Currently in Amarillo, TX heading east on I-40. ETA to Memphis is tomorrow by 10:00 AM. No issues reported. — VA: [Your Name]`
+        },
+        {
+          id:"3-2", title:"Building a Load in a TMS (Step-by-Step Practice)",
+          duration:"30 min", type:"📖 Reading + Practice Exercise",
+          content:`## Building a Load — Your Data Entry Foundation
+
+When a new load comes in, someone needs to enter all the details into the TMS. This is often a VA job. Accuracy prevents costly mistakes.
+
+---
+
+### Information You Need Before Building a Load
+
+**Shipper Info:**
+- Company name, contact name and phone
+- Pickup address (full address with zip)
+- Pickup date and time (appointment or FCFS)
+- Commodity, weight, and piece count
+- Special instructions
+
+**Consignee (Receiver) Info:**
+- Company name, contact name and phone
+- Delivery address (full address with zip)
+- Delivery date and time
+- Special instructions (liftgate needed? appointment required?)
+
+**Carrier Info (assigned after coverage is found):**
+- Carrier name and MC number
+- Driver name and cell phone
+- Truck number and trailer number
+- Agreed rate
+
+---
+
+### Practice Exercise — Build This Load
+
+Use AscendTMS (free account) and create this load:
+
+**Shipper:** Blue Ridge Manufacturing
+- Contact: Tom Riley, (704) 555-0192
+- Address: 1450 Industrial Blvd, Charlotte, NC 28208
+- Pickup: Monday, July 14 — FCFS between 8AM–3PM
+- Commodity: Palletized auto parts — 20 pallets
+- Weight: 38,500 lbs | Equipment: 53' Dry Van
+
+**Consignee:** Midwest Auto Parts Distribution
+- Contact: Sandra Kim, (312) 555-0847
+- Address: 3890 Logistics Pkwy, Chicago, IL 60638
+- Delivery: Wednesday, July 16 — Appointment at 7:00 AM
+
+**Carrier:** Lone Star Transport LLC
+- MC#: 789234 | Driver: Carlos Rivera — (214) 555-0311
+- Truck: LT-44 / Trailer: TRL-882 | Rate: $2,150
+
+**After building, verify:**
+- All addresses entered correctly with zip codes
+- Dates and times match exactly
+- Weight and commodity correct
+- Carrier rate entered correctly (not shipper rate!)
+- Special instructions added`
+        },
+        {
+          id:"3-3", title:"Carrier Onboarding & Compliance Packets",
+          duration:"28 min", type:"📖 Reading + Document Templates",
+          content:`## Carrier Onboarding — Setting Up New Carriers
+
+Before a brokerage can use a carrier, they must verify the carrier is legal, safe, and properly insured.
+
+---
+
+### Documents Required to Onboard a Carrier
+
+#### 1. Certificate of Insurance (COI)
+- Must show **Cargo Insurance:** minimum $100,000
+- Must show **Liability Insurance:** minimum $1,000,000
+- The brokerage must be listed as "Certificate Holder"
+- Must not be expired
+
+#### 2. W-9 Form
+- Tax identification document — required to process payment
+
+#### 3. Carrier/Broker Agreement
+- Legal contract between the brokerage and carrier
+- Outlines payment terms, dispute resolution, and rules
+
+#### 4. Operating Authority (MC Number Verification)
+- Verify at: **safer.fmcsa.dot.gov**
+- Confirm: Authority is ACTIVE (not revoked or suspended)
+- Check safety rating: Satisfactory is best
+
+---
+
+### How to Verify a Carrier on FMCSA
+
+1. Go to safer.fmcsa.dot.gov/CompanySnapshot.aspx
+2. Search by MC number or DOT number
+3. Check:
+   - **Operating Status:** Must say "AUTHORIZED"
+   - **Safety Rating:** Aim for "Satisfactory" or unrated
+   - **Out of Service Rate:** Below national average
+
+---
+
+### The Carrier Onboarding Email Template
+
+**Subject:** New Carrier Setup — [Brokerage Name] — Action Required
+
+> Hi [Carrier Name],
+>
+> Thank you for your interest in working with [Brokerage Name]! To get you set up in our system, please send us the following:
+>
+> 1. Certificate of Insurance (naming [Brokerage Name] as Certificate Holder)
+> 2. Completed W-9 Form (attached)
+> 3. Signed Carrier-Broker Agreement (attached)
+> 4. Copy of your Operating Authority
+>
+> Once we receive all documents, we'll have you set up within 24 hours.
+>
+> [Your Name] | Carrier Relations | [Brokerage Name]
+
+---
+
+### Tracking Carrier Compliance
+
+Keep a spreadsheet tracking:
+
+| Field | Track This |
+|-------|-----------|
+| Carrier name + MC# | Unique identifier |
+| Insurance expiration | Set 30-day reminder |
+| Date onboarded | Relationship history |
+| Status | Active / Pending / Inactive |
+
+**Set calendar alerts 30 days before insurance expirations** so you can request updated COIs.`
+        },
+        {
+          id:"3-4", title:"Invoicing, PODs & Document Management",
+          duration:"20 min", type:"📖 Reading + Document Flow",
+          content:`## The Document Flow in Freight
+
+Every load generates a paper trail. As a VA, you'll be handling, organizing, and processing these documents daily.
+
+---
+
+### The 4 Critical Freight Documents
+
+#### Rate Confirmation (Rate Con)
+- **Created by:** Broker | **Sent to:** Carrier before pickup
+- **Contains:** Load details, rate, payment terms, special instructions
+- **Why it matters:** It's the contract between broker and carrier
+
+#### Bill of Lading (BOL)
+- **Created by:** Shipper | **Given to:** Driver at pickup
+- **Contains:** Shipper/consignee info, commodity, weight, piece count
+- **Why it matters:** The legal receipt of goods
+
+#### Proof of Delivery (POD)
+- **Created:** At time of delivery (BOL gets signed by consignee)
+- **Why it matters:** Without a signed POD, carriers don't get paid
+
+#### Invoice
+- **Created by:** Carrier (to broker) and Broker (to shipper)
+- **Contains:** Load number, rate, bank info for payment
+
+---
+
+### Document Flow
+
+\`\`\`
+Shipper → BOL given to Driver at pickup
+Driver delivers → Consignee signs BOL → becomes POD  
+Carrier sends POD + Invoice → Broker
+Broker sends Invoice + POD → Shipper
+Shipper pays Broker (Net 30-45 days)
+Broker pays Carrier (Net 30 days)
+\`\`\`
+
+---
+
+### Common Document Problems
+
+| Problem | Solution |
+|---------|----------|
+| Carrier can't find the POD | Ask driver to photograph signed BOL in their cab |
+| Shipper disputes weight on invoice | Pull original BOL, compare weight listed |
+| Invoice doesn't match Rate Con | Do not pay until corrected. "Please resubmit at $2,100." |
+
+---
+
+### Google Drive Folder Structure
+
+\`\`\`
+📁 Load #12345 — Dallas to Chicago
+   📄 Rate Confirmation — Load 12345.pdf
+   📄 BOL — Load 12345.pdf
+   📄 POD Signed — Load 12345.pdf
+   📄 Carrier Invoice — Load 12345.pdf
+   📄 Shipper Invoice — Load 12345.pdf
+\`\`\`
+
+Name files consistently so anyone on the team can find anything in seconds.`
+        }
+      ]
+    },
+    {
+      id:4, level:"INTERMEDIATE", emoji:"📊",
+      accentColor:"#A855F7",
+      title:"Freight Brokerage Operations",
+      objective:"Understand how a freight brokerage runs as a business — sales, pricing, margins, accessorials, and how VAs support each function.",
+      lessons:[
+        {
+          id:"4-1", title:"How Freight Brokers Make Money",
+          duration:"18 min", type:"📖 Reading + Math Examples",
+          content:`## How Freight Brokers Make Money
+
+Understanding broker economics makes you a better VA — you'll understand why your boss makes certain decisions.
+
+---
+
+### The Gross Margin Model
+
+**Formula:**
+> Broker Revenue = Shipper Rate − Carrier Rate
+
+| Scenario | Shipper Pays | Carrier Gets | Margin | % |
+|----------|-------------|-------------|--------|---|
+| Good margin | $3,200 | $2,600 | $600 | 18.75% |
+| Tight margin | $2,800 | $2,650 | $150 | 5.4% |
+| Not viable | $2,400 | $2,350 | $50 | 2.1% |
+
+---
+
+### Spot Market vs. Contract Freight
+
+**Spot Market (Transactional)**
+- One-time loads, priced at current market rates
+- Volatile — rates change daily based on supply and demand
+- Higher margins possible in tight markets, very low in oversupply
+
+**Contract Freight**
+- Long-term agreement (usually 1 year) between shipper and broker
+- Fixed or index-based pricing — more predictable volume
+- Example: A shipper agrees to give a broker 50 loads/month at locked-in rates
+
+> **VA Insight:** When your broker says "This is a spot load" vs. "This is a contract lane" — now you understand the difference in urgency and pricing strategy.
+
+---
+
+### Revenue Metrics
+
+**Revenue Per Load:** Total gross margin per shipment
+- Target: $300–$800 per load in average markets
+
+**Revenue Per Mile (RPM):** Gross margin ÷ loaded miles
+- Target: $0.30–$0.75/mile gross margin
+
+---
+
+### VA Role in Revenue
+You help capture revenue by:
+- Documenting detention time (if driver waits 2+ hours, broker charges shipper)
+- Following up on unpaid invoices
+- Catching billing errors before they go out`
+        },
+        {
+          id:"4-2", title:"Understanding Accessorial Charges",
+          duration:"15 min", type:"📖 Reading + Rate Sheet",
+          content:`## Accessorial Charges — The Extra Fees in Freight
+
+Accessorials are charges beyond the base freight rate. They add up quickly and are a major source of billing disputes.
+
+---
+
+### The Most Common Accessorial Charges
+
+#### DETENTION ($50–$100/hour after 2 free hours)
+When a driver arrives on time but has to wait longer than 2 hours to load or unload.
+
+**How to document it:**
+- Driver calls you: "I arrived at 8AM, it's now 11AM and I'm still not loaded."
+- Record: Arrival time, current time, reason for delay
+- Notify your broker immediately
+- After 2 free hours, detention clock starts — typically $75/hour
+
+#### LAYOVER ($250–$350/day)
+When a driver can't deliver as scheduled and must stay overnight at no fault of their own.
+
+#### LUMPER FEES ($50–$250)
+Third-party labor hired at the delivery point to unload the truck.
+
+**Process:** Driver calls: "The consignee is using lumpers and wants $180 cash advance." Broker approves, driver pays, keeps receipt. Broker bills shipper.
+
+#### TONU — Truck Ordered Not Used ($100–$350)
+When a carrier is dispatched and confirmed, then the load is cancelled.
+
+#### STOP OFFS ($50–$200/stop)
+When a load has multiple pickup or delivery stops beyond the first.
+
+---
+
+### VA Task: Accessorial Tracking Sheet
+
+| Load # | Type | Date | Amount | Notes | Approved By |
+|--------|------|------|--------|-------|-------------|
+| 12345 | Detention | 7/14 | 3 hrs @ $75 | Shipper dock backed up | Broker: Mike |
+| 12346 | TONU | 7/15 | $200 flat | Load cancelled 2hrs before | Broker: Sarah |
+| 12347 | Lumper | 7/16 | $165 | Receipt attached | Broker: Mike |
+
+This sheet protects the brokerage and ensures every accessorial gets billed and collected.`
+        },
+        {
+          id:"4-3", title:"Customer Service: Working with Shippers",
+          duration:"22 min", type:"📖 Reading + Email Templates",
+          content:`## Shipper Customer Service — Keeping the Client Happy
+
+Shippers are the broker's customers. A VA who handles shippers well is worth their weight in gold.
+
+---
+
+### What Shippers Expect
+1. **Proactive updates** — Don't wait for them to ask
+2. **On-time pickups and deliveries** — Or immediate notification if there's a problem
+3. **Accurate documentation** — Correct BOLs, invoices, and PODs
+4. **Quick response** — Under 1 hour for emails, under 5 minutes for urgent calls
+
+---
+
+### Email Templates
+
+**Template 1: Load Dispatched Confirmation**
+
+> **Subject:** Load Dispatched — [Load #] — [Origin] to [Destination]
+>
+> Hi [Shipper Contact Name],
+>
+> Your load [#12345] has been dispatched:
+> - **Carrier:** Lone Star Transport LLC
+> - **Driver:** Carlos Rivera | (214) 555-0311
+> - **Truck/Trailer:** LT-44 / TRL-882
+> - **ETA Pickup:** Today by 2:00 PM
+> - **ETA Delivery:** Wednesday, July 16 by 7:00 AM
+>
+> We'll send updates as the load progresses.
+> [Your Name] | [Brokerage Name]
+
+**Template 2: Delay Notification**
+
+> **Subject:** IMPORTANT: Delivery Delay — Load [#12345]
+>
+> Hi [Shipper Contact Name],
+>
+> Your load [#12345] is experiencing a delay due to [brief explanation]. New estimated arrival: [New ETA].
+>
+> We are actively monitoring and will update you every 2 hours.
+>
+> [Your Name] | [Brokerage Name]
+
+**Template 3: Delivery Confirmation**
+
+> **Subject:** Delivered ✓ — Load [#12345]
+>
+> Hi [Shipper Contact Name],
+>
+> Load [#12345] has been successfully delivered to [Consignee] in [City, State] on [Date] at [Time]. POD is attached.
+>
+> [Your Name] | [Brokerage Name]
+
+---
+
+### Handling Angry Shippers — De-escalation Script
+
+**Situation:** Shipper is furious because their load is 6 hours late.
+
+> "I completely understand your frustration, and I want to resolve this immediately. Here's what I know right now: [factual update]. Here's what I'm doing about it: [specific action]. I'll call you back in 30 minutes with a confirmed update. Can I reach you at this number?"
+
+**Rules:**
+- Never argue or make excuses
+- Always provide a specific next step with a specific callback time
+- Document everything with timestamps`
+        }
+      ]
+    },
+    {
+      id:5, level:"ADVANCED", emoji:"🚀",
+      accentColor:"#EF4444",
+      title:"Advanced Operations & Specializations",
+      objective:"Level up with LTL operations, market analysis, dispatch skills, and building your career as a high-value Freight VA.",
+      lessons:[
+        {
+          id:"5-1", title:"LTL Freight — How Less-Than-Truckload Works",
+          duration:"30 min", type:"📖 Reading + Case Study",
+          content:`## LTL Freight — The Complex World of Shared Trailers
+
+LTL (Less-Than-Truckload) is a different beast from Full Truckload. Understanding it separates intermediate VAs from advanced ones.
+
+---
+
+### How LTL Works
+
+In LTL, multiple shippers share space in one trailer. A driver picks up freight from multiple locations, brings it to a **terminal (hub)**, where it's sorted and consolidated onto a linehaul truck, driven to the destination terminal, then delivered to each consignee by a local driver.
+
+**This network is called a hub-and-spoke system.**
+
+---
+
+### Freight Class — The Price Multiplier
+
+LTL freight is priced using **NMFC freight classes**. Classes range from **Class 50** (cheapest, dense) to **Class 500** (most expensive, low-density).
+
+| Class | Density (lbs/cu ft) | Examples |
+|-------|-------------------|---------|
+| 50 | 50+ | Steel bars, bricks, sand |
+| 85 | 10.5–12 | Crated machinery, refrigerators |
+| 150 | 6–7 | Auto parts, electronics |
+| 300 | 2–4 | Furniture, mattresses |
+| 500 | Less than 1 | Ping pong balls, assembled bicycles |
+
+**If you enter the wrong freight class, the carrier will reclassify it at delivery and the shipper gets a surprise surcharge bill.**
+
+---
+
+### Major LTL Carriers to Know
+
+| Carrier | Region | Notes |
+|---------|--------|-------|
+| FedEx Freight | National | Premium service, reliable |
+| Old Dominion (ODFL) | National | Consistently top-rated |
+| XPO Logistics | National | Technology-forward |
+| Estes Express | East/Central U.S. | Family-owned |
+| Saia | Southeast/National | Growing network |
+
+---
+
+### Case Study: The Reclassification Dispute
+
+A shipper sends a mattress (Class 200) but their manager enters it as Class 100 to save money. The carrier's terminal reclassifies it and sends a $340 surcharge invoice.
+
+**VA Action:**
+1. Receive the dispute from the shipper
+2. Pull the original BOL — check what class was declared
+3. Request the carrier's inspection report
+4. If the carrier is wrong, file a dispute in writing
+5. If the shipper was wrong, educate them on correct classification`
+        },
+        {
+          id:"5-2", title:"Reading the Freight Market — Cycles & Signals",
+          duration:"25 min", type:"📖 Reading + Data Analysis",
+          content:`## Reading the Freight Market Like a Pro
+
+The best freight VAs understand market conditions — why rates go up, why they crash, and what signals to watch.
+
+---
+
+### The Freight Cycle
+
+**Tight Market (Carrier's Market)**
+- More loads than trucks available — carriers demand higher rates
+- Brokers have smaller margins
+- Typical in: Q4 (holiday), Q1 (post-winter recovery)
+
+**Loose Market (Shipper's Market)**
+- More trucks than loads — carriers accept lower rates
+- Brokers can build better margins
+- Typical in: Mid-Q1 (after Chinese New Year), Mid-summer slowdowns
+
+---
+
+### Key Market Indicators
+
+#### Outbound Tender Rejection Rate (OTRI)
+- Published weekly by FreightWaves
+- **High rejection rate (>25%):** Market is tight, spot rates rising
+- **Low rejection rate (<10%):** Market is loose, rates falling
+
+#### DAT Load-to-Truck Ratio
+- **Ratio > 5:1:** Tight market
+- **Ratio < 3:1:** Loose market
+
+---
+
+### Seasonal Patterns in U.S. Freight
+
+| Month(s) | Market | Why |
+|----------|--------|-----|
+| Jan–Feb | Slow | Post-holiday slump |
+| Mar–Apr | Pickup | Spring produce, construction season |
+| May–Jun | Active | Steady, good for brokers |
+| Jul–Aug | Mixed | Back-to-school retail up, vacations down |
+| Sep–Oct | Ramp-up | Holiday retail imports begin |
+| Nov–Dec | PEAK | Highest demand of year, rates spike |
+
+---
+
+### Tools to Monitor the Freight Market
+
+| Tool | Use | Cost |
+|------|-----|------|
+| FreightWaves SONAR Lite | Market data | Free (limited) |
+| DAT Trendlines | Weekly rate trends | Free |
+| ATA Tonnage Index | Monthly trucking data | Free |
+| DAT RateView | Lane-specific rates | Paid (DAT sub) |
+
+> **VA Practical Tip:** Follow @FreightWaves and @DAT_Freight on LinkedIn. Read their weekly market updates. In 30 minutes/week, you'll know more about market conditions than most people in freight.`
+        },
+        {
+          id:"5-3", title:"Freight Dispatch — How to Dispatch Carriers",
+          duration:"35 min", type:"📖 Reading + Live Scripts",
+          content:`## Freight Dispatch — The Highest-Value VA Skill
+
+Dispatching is when you actively find loads for carriers and negotiate on their behalf. This is a premium, high-income skill.
+
+---
+
+### What is a Freight Dispatcher?
+
+A freight dispatcher works directly for a carrier, finding them loads and handling paperwork — for a fee (**5–10% of each load's gross revenue**).
+
+**This is different from a freight broker.** Dispatchers don't need an MC license.
+
+---
+
+### Dispatcher Income Potential
+
+| Carrier Revenue | Your 7% Fee | Monthly (4 wks) |
+|----------------|-------------|----------------|
+| $8,000/week | $560/week | $2,240 |
+| $15,000/week | $1,050/week | $4,200 |
+| $15,000/wk × 3 carriers | $3,150/week | **$12,600** |
+
+---
+
+### Load Negotiation Script — Dispatcher Calling a Broker
+
+**Context:** You found a load on DAT from Phoenix, AZ to Dallas, TX. The broker posted no rate.
+
+> **You:** "Hi, calling about the dry van load you posted, Phoenix to Dallas. Is that still available?"
+> **Broker:** "Yes, we need a pickup today."
+> **You:** "Great. My driver is in Phoenix, ready to go. What's your best rate?"
+> **Broker:** "$1,800."
+> **You:** "Phoenix to Dallas is running about $2.20 a mile right now. With 1,050 miles, we'd need $2,300."
+> **Broker:** "Best I can do is $2,000."
+> **You:** "I can do $2,150. That gets this load covered today."
+> **Broker:** "Deal. Send me your carrier packet."
+
+---
+
+### How to Set Up a Freight Dispatch Business
+
+1. **Register your business** (LLC recommended — $50–$200 depending on your state)
+2. **Get a dispatch agreement template** — legal contract between you and the carrier
+3. **Find your first carrier:**
+   - Facebook groups: "Owner Operators Looking for Dispatchers"
+   - Instagram hashtags: #owneroperator #truckinglife
+4. **Set your rate:** Start at 5% to build experience → grow to 8–10%
+5. **Tools you'll need:**
+
+| Tool | Use | Cost |
+|------|-----|------|
+| DAT or Truckstop | Load board | $45–$135/mo |
+| Google Voice | Phone number | Free |
+| Carrier411 | Check broker credit | Free/Paid |
+| Google Sheets | Load tracking | Free |
+| Gmail | Document management | Free |`
+        },
+        {
+          id:"5-4", title:"Building Your Freight VA Career & Rates",
+          duration:"28 min", type:"📖 Reading + Career Roadmap",
+          content:`## Building Your Freight VA Career
+
+This is where everything you've learned converts into real income.
+
+---
+
+### Freight VA Skill Tiers and Rates
+
+| Tier | Skills | Rate (Offshore) | Rate (U.S.) |
+|------|--------|----------------|-------------|
+| Entry Level | Check calls, TMS data entry, docs | $5–$10/hr | $15–$20/hr |
+| Intermediate | Carrier onboarding, load boards, invoicing | $10–$18/hr | $20–$35/hr |
+| Advanced | LTL, market analysis, team lead, SOPs | $18–$30/hr | $35–$60/hr |
+| Agency Owner | Team of VAs, multiple brokerage clients | $10K–$50K/mo | — |
+
+---
+
+### Where to Find Freight VA Jobs
+
+**Job Boards:**
+- Indeed.com — Search: "freight virtual assistant," "logistics dispatcher remote"
+- LinkedIn Jobs — Same searches
+- Upwork.com — Set up profile as "Freight/Logistics VA"
+- OnlineJobs.ph — Popular for Filipino VAs
+
+**Direct Outreach:**
+- Find small-to-mid freight brokerages on Google: "freight broker [city]"
+- Email their operations manager directly
+
+---
+
+### Your Resume Must Include
+
+- TMS software you've used (AscendTMS, McLeod, Rose Rocket, Turvo)
+- Load boards experience (DAT, Truckstop.com)
+- Specific tasks: check calls, carrier onboarding, load tracking, invoicing
+- Equipment types you're familiar with
+- Metrics: "Managed 30+ loads per week," "Processed 50+ carrier packets monthly"
+- Communication tools: RingCentral, MacroPoint, Slack
+
+---
+
+### Building a Portfolio Without Work Experience
+
+1. **Create a demo company** — "ABC Freight Brokerage" (fake)
+2. **Build 10 loads in AscendTMS** — Screenshot each step
+3. **Create sample documents** — Rate confirmations, BOLs, invoice templates
+4. **Record a check call simulation** — You playing both VA and driver
+5. **Write an SOP** — "How to onboard a new carrier in 5 steps"
+6. **Compile into a Google Drive folder** — Share the link in your application
+
+---
+
+### 90-Day Launch Plan
+
+**Days 1–30 (Foundation)**
+- Complete Modules 1–3 of this course
+- Create AscendTMS free account and practice
+- Build your resume and LinkedIn profile
+
+**Days 31–60 (Practice)**
+- Complete Modules 4–5
+- Build your portfolio (fake brokerage + sample documents)
+- Apply to 10 freight VA positions per week
+
+**Days 61–90 (Launch)**
+- Interview and land first client or job
+- Start at entry-level, learn fast
+- Ask about advancement opportunities after 90 days`
+        }
+      ]
+    },
+    {
+      id:6, level:"ADVANCED", emoji:"🏆",
+      accentColor:"#F4A100",
+      title:"Career Resources & Final Review",
+      objective:"Complete your knowledge review and access every template, cheat sheet, and tool reference you need to start working in freight immediately.",
+      lessons:[
+        {
+          id:"6-1", title:"Final Knowledge Review — 10 Key Concepts to Master",
+          duration:"20 min", type:"📖 Review + Self-Assessment",
+          content:`## Final Knowledge Review
+
+Before you start applying for jobs or clients, confirm you can answer these 10 questions from memory. If you can't, go back to that module.
+
+---
+
+### The 10 Concepts Every Freight VA Must Know Cold
+
+**1. What are the 4 key players in every freight transaction?**
+> Shipper, Carrier, Freight Broker, and Freight VA. The broker connects shipper to carrier. The VA supports the broker.
+
+**2. What is the difference between a BOL and a POD?**
+> A BOL (Bill of Lading) is created at pickup — it's the legal contract. A POD (Proof of Delivery) is the BOL signed at delivery, confirming the load was received.
+
+**3. How do you calculate Rate Per Mile?**
+> Total rate ÷ total miles. Example: $2,100 ÷ 980 miles = $2.14/mile.
+
+**4. What is detention and when does the clock start?**
+> Detention is a fee charged when a driver waits more than 2 hours at a shipper or consignee. The clock starts after the 2 free hours. Typical rate: $50–$100/hour.
+
+**5. What documents must a carrier provide to be onboarded?**
+> Certificate of Insurance (COI), W-9 Form, Signed Carrier-Broker Agreement, Operating Authority verification.
+
+**6. What is the FMCSA and why does it matter?**
+> Federal Motor Carrier Safety Administration — the federal agency that issues and regulates carrier authority (MC numbers). You verify carriers at safer.fmcsa.dot.gov before using them.
+
+**7. What is a TONU?**
+> Truck Ordered Not Used — a fee paid to a carrier when a load is cancelled after they were already dispatched and en route.
+
+**8. What's the difference between spot market and contract freight?**
+> Spot is one-time loads priced at current market rates. Contract is a long-term agreement with locked pricing. Contract is more stable; spot has higher variance.
+
+**9. What freight class would you assign to a pallet of auto parts?**
+> Typically Class 150, based on density of approximately 6–7 lbs per cubic foot.
+
+**10. What is a Freight Dispatcher and how do they earn money?**
+> A dispatcher works for carriers (not shippers), finding them loads and negotiating rates. They earn 5–10% of each load's gross revenue. No MC license required.
+
+---
+
+### Self-Assessment Scoring
+- **9–10 correct:** You're job-ready. Start applying this week.
+- **7–8 correct:** Solid foundation. Review the 2–3 you missed and apply next week.
+- **5–6 correct:** Go back and re-read Modules 3 and 4 before applying.
+- **Below 5:** Restart from Module 1. The industry moves fast — you need these reflexes.`
+        },
+        {
+          id:"6-2", title:"Resource Library — Templates, Tools & Career Links",
+          duration:"Reference", type:"📁 Resource Pack",
+          content:`## Your Complete Resource Library
+
+Everything you need to start working as a Freight VA, in one place.
+
+---
+
+### Free Tools — Start Using These Today
+
+| Tool | Use | Link |
+|------|-----|------|
+| AscendTMS | Practice TMS | ascendtms.com |
+| Google Voice | Free phone number | voice.google.com |
+| FMCSA Safer | Carrier verification | safer.fmcsa.dot.gov |
+| EIA Diesel Data | Fuel surcharge tracking | eia.gov/petroleum |
+| DAT Trendlines | Free market data | dat.com/trendlines |
+| FreightWaves | Industry news | freightwaves.com |
+| Carrier411 | Broker credit scores | carrier411.com |
+| Google Sheets | Load tracking | sheets.google.com |
+
+---
+
+### Paid Tools (When You're Earning)
+
+| Tool | Use | Cost |
+|------|-----|------|
+| DAT Power | Full load board + rates | $45–$200/mo |
+| Truckstop.com | Load board | $39–$399/mo |
+| RingCentral | VoIP phone | $20–$35/mo |
+| MacroPoint | Load tracking | Per-use |
+
+---
+
+### Communities to Join
+
+- **Freight Brokers & Agents Network** (Facebook) — 50,000+ members
+- **Virtual Freight Dispatchers** (Facebook)
+- **Trucking and Logistics Professionals** (LinkedIn)
+- **FreightWaves Community** (LinkedIn)
+
+---
+
+### Your 7-Day Action Plan After This Course
+
+**Day 1:** Sign up for AscendTMS free account. Build 3 practice loads.
+
+**Day 2:** Set up Google Voice number. Practice check call scripts out loud 5 times.
+
+**Day 3:** Update LinkedIn: add freight skills, change headline to "Freight VA | Load Tracking | TMS | Carrier Onboarding"
+
+**Day 4:** Build your portfolio document — 5 pages showing your process (load building, carrier onboarding, check call notes).
+
+**Day 5:** Write your Upwork profile. Search Indeed for "freight virtual assistant." Apply to 3 positions.
+
+**Day 6:** Join 2 Facebook groups. Post: "Hi! I just completed Freight VA training and I'm looking for my first client. I'm experienced in TMS, check calls, and carrier onboarding. Open to part-time or project work to build experience."
+
+**Day 7:** Follow up on all applications. Apply to 3 more positions. Repeat daily.
+
+---
+
+### Salary Negotiation by Experience
+
+**First 90 days (zero experience):**
+Start at $5–$8/hr offshore or offer a 2-week trial at reduced rate. Get the experience and testimonial — that's the real asset.
+
+**After 90 days:**
+Renegotiate: "I've now handled X loads per week for 3 months. I'd like to discuss moving to $10/hr."
+
+**After 6 months:**
+You should be at $12–$18/hr and have strong testimonials. At this point, you can raise rates for any new client.
+
+---
+
+### You Did It.
+
+The U.S. freight industry moves **$1 trillion** worth of goods every year. Every single load needs people like you — organized, communicative, detail-oriented VAs who understand how the system works.
+
+**Go get your piece of it. 🚛**`
+        }
+      ]
+    }
+  ]
+};
+
+// ══════════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════════
+let completed = new Set(JSON.parse(localStorage.getItem('fva_completed')||'[]'));
+let currentModuleId = null;
+let currentLessonId = null;
+let lastLessonId = null;
+const TOTAL = COURSE.modules.reduce((s,m)=>s+m.lessons.length,0);
+
+function saveCompleted(){localStorage.setItem('fva_completed',JSON.stringify([...completed]))}
+
+function allLessons(){
+  return COURSE.modules.flatMap(m=>m.lessons.map(l=>({...l,moduleId:m.id})));
+}
+
+function getLesson(id){
+  for(const m of COURSE.modules) for(const l of m.lessons) if(l.id===id) return {lesson:l,module:m};
+  return null;
+}
+
+// ══════════════════════════════════════════════
+// RENDER HOME
+// ══════════════════════════════════════════════
+function renderModules(){
+  const c = document.getElementById('modules-container');
+  c.innerHTML = '';
+  COURSE.modules.forEach(module=>{
+    const modCompleted = module.lessons.filter(l=>completed.has(l.id)).length;
+    const total = module.lessons.length;
+    const pct = total>0?(modCompleted/total)*100:0;
+    const r = 20, circ = 2*Math.PI*r;
+    const offset = circ - (pct/100)*circ;
+    const levelClass = module.level==='BEGINNER'?'beginner':module.level==='INTERMEDIATE'?'intermediate':'advanced';
+
+    const card = document.createElement('div');
+    card.className='module-card';
+    card.innerHTML=`
+      <div class="module-header" onclick="toggleModule(${module.id},this)">
+        <div class="module-icon" style="background:${module.accentColor}18">${module.emoji}</div>
+        <div class="module-meta">
+          <div class="module-level-row">
+            <span class="level-badge level-${levelClass}">${module.level}</span>
+            <span class="module-num">Module ${module.id}</span>
+          </div>
+          <div class="module-title">${module.title}</div>
+          <div class="module-obj">${module.objective}</div>
+        </div>
+        <div class="module-right">
+          <div class="module-progress-ring">
+            <svg class="ring-svg" width="48" height="48" viewBox="0 0 48 48">
+              <circle class="ring-bg" cx="24" cy="24" r="${r}"/>
+              <circle class="ring-fill" cx="24" cy="24" r="${r}"
+                stroke="${module.accentColor}"
+                stroke-dasharray="${circ}"
+                stroke-dashoffset="${offset}"/>
+            </svg>
+            <div class="ring-text">
+              <span class="ring-num">${modCompleted}</span>
+              <span class="ring-den">/${total}</span>
+            </div>
+          </div>
+          <div class="expand-icon">▼</div>
+        </div>
+      </div>
+      <div class="module-lessons" id="mod-lessons-${module.id}">
+        ${module.lessons.map((lesson,i)=>{
+          const done = completed.has(lesson.id);
+          const lessonIdx = allLessons().findIndex(l=>l.id===lesson.id)+1;
+          return `<div class="lesson-row${done?' completed':''}" onclick="openLesson('${lesson.id}')">
+            <div class="lesson-marker">${done?'✓':lessonIdx}</div>
+            <div class="lesson-info">
+              <div class="lesson-title">${lesson.title}</div>
+              <div class="lesson-meta">
+                <span class="lesson-type">${lesson.type}</span>
+                <span class="lesson-sep"></span>
+                <span class="lesson-dur">⏱ ${lesson.duration}</span>
+              </div>
+            </div>
+            <div class="lesson-arrow">→</div>
+          </div>`;
+        }).join('')}
+      </div>`;
+    c.appendChild(card);
+  });
+}
+
+function toggleModule(id, headerEl){
+  const panel = document.getElementById('mod-lessons-'+id);
+  const icon = headerEl.querySelector('.expand-icon');
+  const isOpen = panel.classList.contains('open');
+  // close all
+  document.querySelectorAll('.module-lessons').forEach(p=>p.classList.remove('open'));
+  document.querySelectorAll('.expand-icon').forEach(i=>i.style.transform='');
+  if(!isOpen){
+    panel.classList.add('open');
+    icon.style.transform='rotate(180deg)';
+  }
+}
+
+function updateProgressUI(){
+  const pct = (completed.size/TOTAL*100).toFixed(0);
+  document.getElementById('nav-progress').style.width=pct+'%';
+  document.getElementById('nav-progress-label').textContent=completed.size+' / '+TOTAL;
+  const spFill = document.getElementById('sp-fill');
+  const spTxt = document.getElementById('sp-txt');
+  if(spFill){spFill.style.width=pct+'%';spTxt.textContent=completed.size+'/'+TOTAL;}
+
+  // progress banner
+  const banner = document.getElementById('progress-banner');
+  if(completed.size>0 && completed.size<TOTAL){
+    banner.style.display='block';
+    document.getElementById('pb-fill').style.width=pct+'%';
+    document.getElementById('pb-count').textContent=completed.size+' of '+TOTAL+' lessons';
+    document.getElementById('pb-label').textContent=`${pct}% complete — keep going!`;
+  } else {
+    banner.style.display='none';
+  }
+}
+
+// ══════════════════════════════════════════════
+// SIDEBAR RENDER
+// ══════════════════════════════════════════════
+function renderSidebar(containerId){
+  const c = document.getElementById(containerId);
+  c.innerHTML='';
+  COURSE.modules.forEach(m=>{
+    const group = document.createElement('div');
+    group.className='sb-module-group';
+    group.innerHTML=`<div class="sb-module-head"><span>${m.emoji}</span> Module ${m.id}: ${m.title}</div>`+
+      m.lessons.map(l=>{
+        const done=completed.has(l.id);
+        const active=currentLessonId===l.id;
+        return `<div class="sb-lesson${active?' active-lesson':''}${done?' done-lesson':''}" onclick="openLesson('${l.id}');${containerId==='mobile-sidebar-lessons'?'toggleMobileSidebar();':''}">
+          <div class="sb-dot"></div>
+          <div class="sb-lesson-title">${l.title}</div>
+        </div>`;
+      }).join('');
+    c.appendChild(group);
+  });
+}
+
+// ══════════════════════════════════════════════
+// MARKDOWN RENDERER
+// ══════════════════════════════════════════════
+function renderMarkdown(md){
+  const lines = md.split('\n');
+  let html='', i=0;
+  while(i<lines.length){
+    const l=lines[i];
+    if(l.startsWith('#### ')){html+=`<h4>${esc(l.slice(5))}</h4>`;i++;continue;}
+    if(l.startsWith('### ')){html+=`<h3>${esc(l.slice(4))}</h3>`;i++;continue;}
+    if(l.startsWith('## ')){html+=`<h2>${esc(l.slice(3))}</h2>`;i++;continue;}
+    if(l.startsWith('> ')){html+=`<blockquote>${inlineFormat(l.slice(2))}</blockquote>`;i++;continue;}
+    if(l.startsWith('---')){html+=`<hr>`;i++;continue;}
+    if(l.startsWith('```')){
+      let code='';i++;
+      while(i<lines.length&&!lines[i].startsWith('```')){code+=lines[i]+'\n';i++;}
+      html+=`<pre><code>${esc(code.trimEnd())}</code></pre>`;i++;continue;
+    }
+    if(l.match(/^\| /)||l.match(/^\|---/)){
+      let rows=[],sep=false;
+      while(i<lines.length&&(lines[i].match(/^\| /)||lines[i].match(/^\|[-: ]+\|/))){
+        if(lines[i].match(/^\|[-: ]+\|/)){sep=true;}else{rows.push(lines[i]);}
+        i++;
+      }
+      if(rows.length>0){
+        const parseRow=r=>r.split('|').slice(1,-1).map(c=>inlineFormat(c.trim()));
+        const headers=parseRow(rows[0]);
+        const body=rows.slice(sep?1:1);
+        html+=`<table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${body.map(r=>`<tr>${parseRow(r).map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+      }
+      continue;
+    }
+    if(l.match(/^[-*] /)||l.startsWith('✅')||l.startsWith('📄')||l.startsWith('🔖')){
+      html+='<ul>';
+      while(i<lines.length&&(lines[i].match(/^[-*] /)||lines[i].startsWith('✅')||lines[i].startsWith('📄')||lines[i].startsWith('🔖'))){
+        html+=`<li>${inlineFormat(lines[i].replace(/^[-*] /,''))}</li>`;i++;
+      }
+      html+='</ul>';continue;
+    }
+    if(l.match(/^\d+\. /)){
+      html+='<ol>';
+      while(i<lines.length&&lines[i].match(/^\d+\. /)){
+        html+=`<li>${inlineFormat(lines[i].replace(/^\d+\. /,''))}</li>`;i++;
+      }
+      html+='</ol>';continue;
+    }
+    if(l.trim()===''){html+='<br>';i++;continue;}
+    html+=`<p>${inlineFormat(l)}</p>`;i++;
+  }
+  return html;
+}
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function inlineFormat(s){
+  return s
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g,'<em>$1</em>')
+    .replace(/`(.*?)`/g,'<code>$1</code>');
+}
+
+// ══════════════════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════════════════
+function showHome(){
+  document.getElementById('home-view').classList.add('active');
+  document.getElementById('lesson-view').style.display='none';
+  document.getElementById('completion-view').classList.remove('active');
+  document.getElementById('sidebar-toggle').style.display='none';
+  renderModules();
+  updateProgressUI();
+  window.scrollTo(0,0);
+}
+
+function showLesson(){
+  document.getElementById('home-view').classList.remove('active');
+  document.getElementById('lesson-view').style.display='flex';
+  document.getElementById('completion-view').classList.remove('active');
+  document.getElementById('sidebar-toggle').style.display='block';
+}
+
+function showCompletion(){
+  document.getElementById('home-view').classList.remove('active');
+  document.getElementById('lesson-view').style.display='none';
+  document.getElementById('completion-view').classList.add('active');
+  document.getElementById('sidebar-toggle').style.display='none';
+}
+
+function openLesson(lessonId){
+  const found = getLesson(lessonId);
+  if(!found) return;
+  const {lesson, module} = found;
+  currentModuleId = module.id;
+  currentLessonId = lessonId;
+  lastLessonId = lessonId;
+
+  showLesson();
+
+  // breadcrumb
+  document.getElementById('bc-module').textContent = `Module ${module.id}: ${module.title}`;
+  const all = allLessons();
+  const idx = all.findIndex(l=>l.id===lessonId);
+  document.getElementById('bc-lesson-num').textContent = `Lesson ${idx+1} of ${TOTAL}`;
+
+  // title
+  document.getElementById('lc-title').textContent = lesson.title;
+
+  // tags
+  const levelClass = module.level==='BEGINNER'?'beginner':module.level==='INTERMEDIATE'?'intermediate':'advanced';
+  const doneTag = completed.has(lessonId)?`<span class="lc-tag tag-done">✓ Completed</span>`:'';
+  document.getElementById('lc-tags').innerHTML=`
+    <span class="lc-tag tag-level-${levelClass}">${module.level}</span>
+    <span class="lc-tag tag-type">${lesson.type}</span>
+    <span class="lc-tag tag-dur">⏱ ${lesson.duration}</span>
+    ${doneTag}`;
+
+  // body
+  document.getElementById('lesson-body').innerHTML = renderMarkdown(lesson.content);
+
+  // action bar
+  const bar = document.getElementById('lc-action-bar');
+  const hasPrev = idx>0;
+  const hasNext = idx<TOTAL-1;
+  const isDone = completed.has(lessonId);
+  bar.innerHTML=`
+    ${hasPrev?`<button class="btn-prev" onclick="openLesson('${all[idx-1].id}')">← Previous</button>`:''}
+    <div class="spacer"></div>
+    ${!isDone?`<button class="btn-complete" onclick="markDone('${lessonId}')">✓ Mark Complete</button>`:''}
+    ${hasNext?`<button class="btn-next" onclick="markAndNext('${lessonId}','${all[idx+1].id}')">Next Lesson →</button>`
+    :`<button class="btn-finish" onclick="markAndFinish('${lessonId}')">🏆 Finish Course</button>`}`;
+
+  renderSidebar('sidebar-lessons');
+  renderSidebar('mobile-sidebar-lessons');
+  updateProgressUI();
+  document.getElementById('lesson-content').scrollTo(0,0);
+}
+
+function markDone(id){
+  completed.add(id);saveCompleted();
+  const found=getLesson(id);
+  const all=allLessons();const idx=all.findIndex(l=>l.id===id);
+  document.getElementById('lc-tags').innerHTML+=`<span class="lc-tag tag-done">✓ Completed</span>`;
+  const bar=document.getElementById('lc-action-bar');
+  const completeBtn=bar.querySelector('.btn-complete');
+  if(completeBtn)completeBtn.remove();
+  updateProgressUI();
+  renderSidebar('sidebar-lessons');
+  renderSidebar('mobile-sidebar-lessons');
+}
+
+function markAndNext(currentId, nextId){
+  completed.add(currentId);saveCompleted();
+  openLesson(nextId);
+}
+
+function markAndFinish(id){
+  completed.add(id);saveCompleted();
+  showCompletion();
+}
+
+function startCourse(){
+  const first = allLessons()[0];
+  openLesson(first.id);
+}
+
+function continueLesson(){
+  if(lastLessonId){openLesson(lastLessonId);return;}
+  const all=allLessons();
+  const next=all.find(l=>!completed.has(l.id));
+  if(next)openLesson(next.id);else startCourse();
+}
+
+// ══════════════════════════════════════════════
+// MOBILE SIDEBAR
+// ══════════════════════════════════════════════
+function toggleMobileSidebar(){
+  document.getElementById('mobile-sb-overlay').classList.toggle('open');
+  renderSidebar('mobile-sidebar-lessons');
+}
+
+// ══════════════════════════════════════════════
+// ROAD STRIPES
+// ══════════════════════════════════════════════
+function buildStripes(){
+  const c=document.getElementById('road-stripes');
+  if(!c)return;
+  for(let i=0;i<30;i++){
+    const s=document.createElement('div');s.className='stripe';c.appendChild(s);
+  }
+}
+
+// ══════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════
+buildStripes();
+renderModules();
+updateProgressUI();
+
+// Auto-open last visited lesson if exists
+if(lastLessonId){
+  // don't auto-open, just show continue banner
+}
+</script>
+</body>
+</html>
